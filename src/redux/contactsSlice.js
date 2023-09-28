@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid';
+
 export const contactsReducer = (
   state = {
     contacts: [
@@ -11,7 +13,13 @@ export const contactsReducer = (
 ) => {
   switch (action.type) {
     case 'contacts/add':
-      return { ...state, contacts: state.contacts + action.payload };
+      return {
+        ...state,
+        contacts: {
+          id: nanoid(),
+          ...action.payload,
+        },
+      };
     case 'contacts/delete':
       return {
         ...state,
