@@ -8,9 +8,6 @@ import { addContact, getFilteredContacts } from 'redux/contactsSlice';
 import { useState } from 'react';
 
 export const App = () => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-
   const contacts = useSelector(getContacts);
 
   const dispatch = useDispatch();
@@ -30,7 +27,7 @@ export const App = () => {
   return (
     <div>
       <Section title="Phonebook">
-        <ContactForm addContact={addContact} />
+        <ContactForm />
       </Section>
 
       <Section title="Contacts">

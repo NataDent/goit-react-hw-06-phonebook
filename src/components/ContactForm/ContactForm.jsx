@@ -8,6 +8,8 @@ import {
   ErrorMessageStyled,
   AddButton,
 } from './ContactForm.styled';
+import { useSelector } from 'react-redux';
+import { getContacts } from 'redux/contactSelectors';
 
 const contactSchema = Yup.object().shape({
   name: Yup.string().min(2, 'Too short!').required('Required'),
@@ -22,6 +24,7 @@ const contactSchema = Yup.object().shape({
 });
 
 export const ContactForm = ({ addContact }) => {
+  const contacts = useSelector(getContacts);
   return (
     <FormWrapper>
       <Formik
@@ -31,7 +34,7 @@ export const ContactForm = ({ addContact }) => {
         }}
         validationSchema={contactSchema}
         onSubmit={(values, actions) => {
-          addContact(values);
+          dispatchEvent(addContact(values));
           actions.resetForm();
         }}
       >
