@@ -46,17 +46,6 @@ export const ContactForm = () => {
     }
   };
 
-  const existingName = contacts.find(contact => contact.name === name);
-  const existingNumber = contacts.find(contact => contact.number === number);
-
-  if (existingName) {
-    alert('Such name  already exists');
-    return;
-  }
-  if (existingNumber) {
-    alert('Such number already exists');
-    return;
-  }
   return (
     <FormWrapper>
       <Formik
@@ -66,6 +55,19 @@ export const ContactForm = () => {
         }}
         validationSchema={contactSchema}
         onSubmit={(newContact, actions) => {
+          const existingName = contacts.find(contact => contact.name === name);
+          const existingNumber = contacts.find(
+            contact => contact.number === number
+          );
+
+          if (existingName) {
+            alert('Such name  already exists');
+            return;
+          }
+          if (existingNumber) {
+            alert('Such number already exists');
+            return;
+          }
           dispatch(addContact(newContact));
           actions.resetForm();
         }}
