@@ -31,7 +31,7 @@ export const ContactForm = () => {
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
 
-  const onSubmit = e => {
+  const handleInput = e => {
     e.preventDefault();
     const { name, value } = e.currentTarget.value;
     switch (name) {
