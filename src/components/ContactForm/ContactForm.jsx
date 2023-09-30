@@ -10,7 +10,6 @@ import {
 } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contactsSlice';
-import { useState } from 'react';
 import { getContacts } from 'redux/contactSelectors';
 
 const contactSchema = Yup.object().shape({
@@ -27,24 +26,8 @@ const contactSchema = Yup.object().shape({
 
 export const ContactForm = () => {
   const contacts = useSelector(getContacts);
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  const dispatch = useDispatch();
 
-  const handleInput = e => {
-    e.preventDefault();
-    const { name, value } = e.currentTarget.value;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'number':
-        setNumber(value);
-        break;
-      default:
-        return;
-    }
-  };
+  const dispatch = useDispatch();
 
   return (
     <FormWrapper>
@@ -55,9 +38,11 @@ export const ContactForm = () => {
         }}
         validationSchema={contactSchema}
         onSubmit={(newContact, actions) => {
-          const existingName = contacts.find(contact => contact.name === name);
+          const existingName = contacts.find(
+            contact => contact.name === newContact.name
+          );
           const existingNumber = contacts.find(
-            contact => contact.number === number
+            contact => contact.number === newContact.number
           );
 
           if (existingName) {
