@@ -9,24 +9,6 @@ import { getFilteredContacts } from 'redux/contactsSlice';
 export const App = () => {
   const contacts = useSelector(getContacts);
 
-  // const dispatch = useDispatch();
-
-  // const existingContact = contacts.find(
-  //   contact => contact.name === newContact.name
-  // );
-
-  // const existingNumber = contacts.find(
-  //   contact => contact.number === newContact.number
-  // );
-  // if (existingContact) {
-  //   alert(`Such name  already exists`);
-  //   return;
-  // }
-  // if (existingNumber) {
-  //   alert(`Such number already exists`);
-  //   return;
-  // }
-
   return (
     <div>
       <Section title="Phonebook">
