@@ -1,15 +1,15 @@
-import { getContacts } from 'redux/contactSelectors';
+import { getContacts, getFilter } from 'redux/contactSelectors';
 import { Button, ContactListStyled, ListItem } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contactsSlice';
-import { setFilter } from 'redux/FilterSlice';
 
 export const ContactList = () => {
   const contacts = useSelector(getContacts);
+  const filterValue = useSelector(getFilter);
   const dispatch = useDispatch();
 
   const filteredContacts = contacts.filter(contact =>
-    contact.name.includes(setFilter())
+    contact.name.includes(filterValue)
   );
 
   return (
