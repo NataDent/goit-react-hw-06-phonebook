@@ -29,11 +29,9 @@ export const contactsSlice = createSlice({
         contact => contact.id !== action.payload
       );
     },
-    // getFilteredContacts(state, action) {
-    //   state.contacts = state.contacts.filter(contact =>
-    //     contact.name.toLowerCase().includes(action.payload.toLowerCase())
-    //   );
-    // },
+    setFilter(state, action) {
+      state.filter = action.payload;
+    },
   },
 });
 

@@ -1,22 +1,20 @@
-import { getContacts, getFilter } from 'redux/contactSelectors';
+import { getContacts } from 'redux/contactSelectors';
 import { Button, ContactListStyled, ListItem } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contactsSlice';
+import { setFilter } from 'redux/FilterSlice';
 
 export const ContactList = () => {
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
-  const filterValue = useSelector(getFilter);
 
-  const getFilteredContacts = () => {
-    return contacts.filter(({ name }) => name.includes(filterValue));
-  };
-
-  const filteredContacts = getFilteredContacts();
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.includes(setFilter())
+  );
 
   return (
     <ContactListStyled>
-      {contacts.map(({ id, name, number }) => (
+      {filteredContacts.map(({ id, name, number }) => (
         <ListItem key={id}>
           <p>
             {name}: {number}
