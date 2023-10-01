@@ -7,6 +7,7 @@ export const SectionWrapper = styled.section`
   border: 1px solid lightgrey;
   border-radius: 8px;
   padding: 20px;
+  background-color: rgba(255, 99, 71, 0.1);
 `;
 
 export const SectionTitle = styled.h2`
