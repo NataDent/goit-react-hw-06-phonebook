@@ -6,9 +6,12 @@ import { deleteContact } from 'redux/contactsSlice';
 export const ContactList = () => {
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(action.payload.toLowerCase())
+  );
   return (
     <ContactListStyled>
-      {contacts.map(({ id, name, number }) => (
+      {filteredContacts.map(({ id, name, number }) => (
         <ListItem key={id}>
           <p>
             {name}: {number}

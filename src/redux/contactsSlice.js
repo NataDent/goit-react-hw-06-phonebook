@@ -26,18 +26,17 @@ export const contactsSlice = createSlice({
     },
     deleteContact(state, action) {
       state.contacts = state.contacts.filter(
-        contact => contact.id !== action.payload.id
+        contact => contact.id !== action.payload
       );
     },
-    getFilteredContacts(state, action) {
-      state.contacts = state.contacts.filter(contact =>
-        contact.name.toLowerCase().includes(action.payload.toLowerCase())
-      );
-    },
+    // getFilteredContacts(state, action) {
+    //   state.contacts = state.contacts.filter(contact =>
+    //     contact.name.toLowerCase().includes(action.payload.toLowerCase())
+    //   );
+    // },
   },
 });
 
-export const { addContact, deleteContact, getFilteredContacts } =
-  contactsSlice.actions;
+export const { addContact, deleteContact } = contactsSlice.actions;
 
 export default contactsSlice.reducer;
